@@ -1,0 +1,17 @@
+export const R_OFFSET = 0;
+export const G_OFFSET = 1;
+export const B_OFFSET = 2;
+export const ALPHA = 3;
+export const LMS1 = [0.05235866, 0.14667038, 0.95667258]; // 475nm
+export const LMS2 = [0.9847601, 0.87614013, 0.00165276]; // 575nm
+export const neutralWhite = [1.027,0.9847,0.9182]; //EEW
+export const tritanopia1 = [0.093199314, 0.2123315427, 0.56579484] //485nm
+export const tritanopia2 = [0.10915658, 0.03376643, 0]; // 660nm
+export const plane1Protanope = [-0.8073627466100001, 0.9344270180479999, -0.09907290775799998];
+export const plane2Protanope = [0.802844394594, -0.9025093393, 0.0698973569600001];
+export const plane1Deuteranope = [-0.8073627466100001, 0.9344270180479999, -0.09907290775799998];
+export const plane2Deuteranope = [0.802844394594, -0.9025093393, 0.0698973569600001];
+export const plane1Tritanope = [-0.8073627466100001, 0.9344270180479999, -0.09907290775799998];
+export const plane2Tritanope = [0.802844394594, -0.9025093393, 0.0698973569600001];
+export const LMStoRGBMatrix = [[5.47221206, -4.6419601, 0.16963708, 0], [-1.1252419, 2.29317094, -0.1678952, 0], [0.02980165, -0.19318073, 1.16364789, 0], [0, 0, 0, 1]];
+export const RGBtoLMSMatrix = [[0.31399022, 0.63951294, 0.04649755, 0], [0.15537241, 0.75789446, 0.08670142, 0], [0.01775239, 0.10944209, 0.87256922, 0], [0, 0, 0, 1]];
