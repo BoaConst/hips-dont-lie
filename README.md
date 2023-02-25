@@ -1,4 +1,4 @@
-# Color correction App
+# Health-Information-Provider-System (HIPS) Development and Deployment Details
 
 ## Build and Run the application locally
 
