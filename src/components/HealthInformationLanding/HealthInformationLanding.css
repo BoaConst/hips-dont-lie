@@ -20,6 +20,10 @@
     transition: transform 0.3s ease-in-out;
   }
   
+  .tileColor {
+    background-color:	#5A5A5A;
+  }
+
   .red {
     background-color: #ff4d4d;
   }
