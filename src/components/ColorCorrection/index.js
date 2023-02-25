@@ -12,7 +12,6 @@ import Slider from "../Slider";
 import { rotateColors } from "./../../compute/ColorSpace";
 import { LUT } from "../../constants/LUT";
 
-// import '@tensorflow/tfjs-backend-webgl';
 import { all, create } from "mathjs"
 import { None, Deuteranopia, Protanopia, Tritanopia } from "../../constants/types";
 
