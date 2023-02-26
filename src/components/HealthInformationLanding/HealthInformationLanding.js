@@ -9,9 +9,6 @@ import { AILMENT_STRING } from '../../constants/AILMENT_STRING';
 
 
 const HealthInformationLanding = (props) => {
-	const tiles = document.querySelectorAll('.tile');
-	const tileNames = Object.keys(COMMON_AILMETS);
-
 	const [showTable, setShowTable] = useState(props.showTable);
 	const [query, setQuery] = useState("");
 	const [data, setData] = useState("");
