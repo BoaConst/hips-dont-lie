@@ -24,22 +24,39 @@
     background-color:	#5A5A5A;
   }
 
-  .red {
-    background-color: #ff4d4d;
+  .tileCPR {
+    background-image: url('/src/images/CPR.png');
+    background-size: cover;
+  }
+
+  .tileHeatStroke {
+    background-image: url('/src/images/Heat\ Stroke.png');
+    background-size: cover;
+  }
+
+  .tileMinorBurns {
+    background-image: url('/src/images/Minor_Burns.png');
+    background-size: cover;
   }
   
-  .green {
-    background-color: #4dff4d;
+  .tileMinorCuts {
+    background-image: url('/src/images/Minor_Cuts.jpeg');
+    background-size: cover;
   }
-  
-  .blue {
-    background-color: #4d4dff;
+
+  .tileInsulin {
+    background-image: url('/src/images/Insulin.jpeg');
+    background-size: cover;
   }
-  
+
+  .tileAsthmaAttack {
+    background-image: url('/src/images/asthmaAttack.png');
+    background-size: cover;
+  }
+
   .tile:hover {
     transform: scale(1.05);
   }
-
   
   button {
     border: none;
@@ -47,6 +64,7 @@
     cursor: pointer;
     padding: 8px;
   }
+
   button:hover {
     background-color: #f5f5f5;
   }
