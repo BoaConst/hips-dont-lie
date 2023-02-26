@@ -1,8 +1,8 @@
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { Content, Wrapper } from '../../HealthInformationLanding.styles';
-import SearchBar from '../SearchBar/SearchBar';
 import './HealthInformationLanding.css';
-
 
 const HealthInformationLanding = () => {
 
@@ -25,6 +25,12 @@ const HealthInformationLanding = () => {
 		});
 	});
 
+	const handleChange = () => {
+		let element = document.getElementById("query");
+	
+		console.log("Value: %s", element.value)
+	};
+
 	return (
 		<div >
 			<Wrapper className="d-grid gap-3 pt-3 mb-4 px-4 bg-light border rounded-3">
@@ -39,7 +45,25 @@ const HealthInformationLanding = () => {
 						<div className="tile tileColor">Tile 5</div>
 						<div className="tile tileColor">Tile 6</div>
 					</div>
-					<SearchBar></SearchBar>
+					<div className="search-bar">
+						<input
+							style={{
+								height: "50px",
+								width: "85%",
+								marginTop: "3%",
+								marginBottom: "3%",
+								marginLeft: "8%",
+								backgroundColor: "#5A5A5A"
+							}}
+							id="query"
+							type="text"
+							placeholder="Search..."
+						/>
+						<button type="submit"
+							onClick={handleChange}>
+							<FontAwesomeIcon icon={faSearch} />
+						</button>
+					</div>
 				</Content>
 			</Wrapper>
 		</div >
