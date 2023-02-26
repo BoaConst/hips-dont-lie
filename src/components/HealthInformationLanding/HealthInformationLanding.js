@@ -1,4 +1,4 @@
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faBackward } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import { Content, Wrapper } from '../../HealthInformationLanding.styles';
@@ -11,27 +11,6 @@ import { AILMENT_STRING } from '../../constants/AILMENT_STRING';
 const HealthInformationLanding = (props) => {
 	const tiles = document.querySelectorAll('.tile');
 	const tileNames = Object.keys(COMMON_AILMETS);
-	
-	// tiles.forEach(tile => {
-	// 	let isClicked = false;
-	// 	tile.addEventListener('click', () => {
-	// 		if (!isClicked) {
-	// 			// Display information about the clicked tile
-	// 			let disease = tile.textContent;
-	// 			tile.textContent = AILMENT_STRING.disease
-	// 			console.log(AILMENT_STRING[disease])
-	// 			tile.style.backgroundColor = 'blue';
-	// 			isClicked = true;
-	// 		} else {
-	// 			// Revert back to original state
-	// 			tile.textContent = 'Click me';
-	// 			tile.style.backgroundColor = '#5A5A5A';
-	// 			isClicked = false;
-	// 		}
-	// 	});
-	// });
-
-
 
 	const [showTable, setShowTable] = useState(props.showTable);
 	const [query, setQuery] = useState("");
@@ -164,7 +143,7 @@ const HealthInformationLanding = (props) => {
 					{showTable && (<div>
 						<button type="submit"
 							onClick={handleChange}>
-							<FontAwesomeIcon icon={faSearch} />
+							<FontAwesomeIcon icon={faBackward} />
 						</button>
 						<input
 						style={{
