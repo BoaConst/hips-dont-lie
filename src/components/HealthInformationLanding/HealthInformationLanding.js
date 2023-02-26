@@ -3,13 +3,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import { Content, Wrapper } from '../../HealthInformationLanding.styles';
 import './HealthInformationLanding.css';
+import { useEffect } from 'react';
+
 
 const HealthInformationLanding = (props) => {
 
 	const tiles = document.querySelectorAll('.tile');
 	const [showTable, setShowTable] = useState(props.showTable);
-	let query = "";
-	let response = ""
+	const [query, setQuery] = useState("");
+	const [data, setData] = useState("");
 
 	tiles.forEach(tile => {
 		let isClicked = false;
@@ -28,11 +30,44 @@ const HealthInformationLanding = (props) => {
 		});
 	});
 
+	useEffect(() => {
+		const fetchData = async () => {
+			const apiUrl = 'https://api.openai.com/v1/completions';
+
+			const postData = {
+				"model": "text-davinci-003",
+				"prompt": query + ", Provide answer in medical/health context.",
+				"temperature": 0,
+				"max_tokens": 200
+			};
+
+			console.log(postData.prompt)
+
+			try {
+				const response = await fetch(apiUrl, {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+						'Authorization': 'Bearer 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'
+					},
+					body: JSON.stringify(postData)
+				});
+				let result = await response.json();
+				setData(result.choices[0].text)
+			} catch (error) {
+				console.error(error);
+			}
+		};
+
+		fetchData();
+	}, [query]);
+
 	const handleChange = () => {
 		const element = document.getElementById("query");
-		query = element.value;
+		setQuery(element.value);
 		if (query) {
 			toggleTable();
+			console.log(data);
 		}
 	};
 
