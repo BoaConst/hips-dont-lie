@@ -12,23 +12,26 @@ const HealthInformationLanding = (props) => {
 	const tiles = document.querySelectorAll('.tile');
 	const tileNames = Object.keys(COMMON_AILMETS);
 	
-	tiles.forEach(tile => {
-		let isClicked = false;
-		tile.addEventListener('click', () => {
-			if (!isClicked) {
-				// Display information about the clicked tile
-				console.log("here")
-				tile.textContent = 'Clicked!';
-				tile.style.backgroundColor = 'blue';
-				isClicked = true;
-			} else {
-				// Revert back to original state
-				tile.textContent = 'Click me';
-				tile.style.backgroundColor = '#5A5A5A';
-				isClicked = false;
-			}
-		});
-	});
+	// tiles.forEach(tile => {
+	// 	let isClicked = false;
+	// 	tile.addEventListener('click', () => {
+	// 		if (!isClicked) {
+	// 			// Display information about the clicked tile
+	// 			let disease = tile.textContent;
+	// 			tile.textContent = AILMENT_STRING.disease
+	// 			console.log(AILMENT_STRING[disease])
+	// 			tile.style.backgroundColor = 'blue';
+	// 			isClicked = true;
+	// 		} else {
+	// 			// Revert back to original state
+	// 			tile.textContent = 'Click me';
+	// 			tile.style.backgroundColor = '#5A5A5A';
+	// 			isClicked = false;
+	// 		}
+	// 	});
+	// });
+
+
 
 	const [showTable, setShowTable] = useState(props.showTable);
 	const [query, setQuery] = useState("");
@@ -86,18 +89,75 @@ const HealthInformationLanding = (props) => {
 		setShowTable(!showTable);
 	};
 
+	const flipTileContentCPR = () => {
+		let tile = document.getElementById("tile1");
+		if(tile.textContent.toString() === AILMENT_STRING.CPR.toString()) {
+			tile.textContent = COMMON_AILMETS.CPR
+		}
+		else {
+			tile.textContent = AILMENT_STRING.CPR
+		}
+	}
+
+	const flipTileContentHeatStroke = () => {
+		let tile = document.getElementById("tile2");
+		if(tile.textContent.toString() === AILMENT_STRING.HEAT_STROKE.toString()) {
+			tile.textContent = COMMON_AILMETS['Heat Stroke']
+		}
+		else {
+			tile.textContent = AILMENT_STRING.HEAT_STROKE
+		}
+	}
+	const flipTileContentMinorBurns = () => {
+		let tile = document.getElementById("tile3");
+		if(tile.textContent.toString() === AILMENT_STRING.MINOR_BURNS.toString()) {
+			tile.textContent = COMMON_AILMETS['Minor Burns']
+		}
+		else {
+			tile.textContent = AILMENT_STRING.MINOR_BURNS
+		}
+	}
+	const flipTileContentMinorCuts = () => {
+		let tile = document.getElementById("tile4");
+		if(tile.textContent.toString() === AILMENT_STRING.MINOR_CUTS.toString()) {
+			tile.textContent = COMMON_AILMETS['Minor Cuts']
+		}
+		else {
+			tile.textContent = AILMENT_STRING.MINOR_CUTS
+		}
+	}
+	const flipTileContentInsulin = () => {
+		let tile = document.getElementById("tile5");
+		if(tile.textContent.toString() === AILMENT_STRING.DIABETES.toString()) {
+			tile.textContent = COMMON_AILMETS['Diabetes (Insulin)']
+		}
+		else {
+			tile.textContent = AILMENT_STRING.DIABETES
+		}
+	}
+	const flipTileContentAsthmaAttack = () => {
+		let tile = document.getElementById("tile6");
+		if(tile.textContent.toString() === AILMENT_STRING.ASTHMA_ATTACK.toString()) {
+			tile.textContent = COMMON_AILMETS['Asthma Attack']
+		}
+		else {
+			tile.textContent = AILMENT_STRING.ASTHMA_ATTACK
+		}
+	}
+
 	return (
 			<Content className="row" style={{ backgroundColor: "#D3D3D3" }}>
 				{!showTable && (<div>
 					<div style={{ display: "flex", marginLeft:"15%", marginTop: "1%" }}>
-						<div className="tile tileColor tileCPR">{AILMENT_STRING.CPR}</div>
-						<div className="tile tileColor tileHeatStroke">{AILMENT_STRING.HEAT_STROKE}</div>
-						<div className="tile tileColor tileMinorBurns">{AILMENT_STRING.MINOR_BURNS}</div>
+						<div id="tile1" className="tile tileColor tileCPR" onClick={flipTileContentCPR}>{AILMENT_STRING.CPR}</div>
+						
+						<div id="tile3" className="tile tileColor tileMinorBurns" onClick={flipTileContentMinorBurns}>{AILMENT_STRING.MINOR_BURNS}</div>
+						<div id="tile2" className="tile tileColor tileHeatStroke" onClick={flipTileContentHeatStroke}>{AILMENT_STRING.HEAT_STROKE}</div>
 					</div>
 					<div style={{ display: "flex", marginLeft:"15%", marginTop: "2%" }}>
-						<div className="tile tileColor tileMinorCuts">{AILMENT_STRING.MINOR_CUTS}</div>
-						<div className="tile tileColor tileInsulin">{AILMENT_STRING.DIABETES}</div>
-						<div className="tile tileColor tileAsthmaAttack">{AILMENT_STRING.ASTHMA_ATTACK}</div>
+						<div id="tile4"className="tile tileColor tileMinorCuts" onClick={flipTileContentMinorCuts}>{AILMENT_STRING.MINOR_CUTS}</div>
+						<div id="tile5" className="tile tileColor tileInsulin" onClick={flipTileContentInsulin}>{AILMENT_STRING.DIABETES}</div>
+						<div id="tile6" className="tile tileColor tileAsthmaAttack" onClick={flipTileContentAsthmaAttack}>{AILMENT_STRING.ASTHMA_ATTACK}</div>
 					</div>
 				</div>)}
 				<div className="search-bar">
