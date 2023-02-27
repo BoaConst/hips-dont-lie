@@ -32,7 +32,7 @@ const HealthInformationLanding = (props) => {
 						method: 'POST',
 						headers: {
 							'Content-Type': 'application/json',
-							'Authorization': 'Bearer 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'
+							'Authorization': 'Bearer <api-access-key>'
 						},
 						body: JSON.stringify(postData)
 					});
