@@ -9,9 +9,6 @@ import { AILMENT_STRING } from '../../constants/AILMENT_STRING';
 
 
 const HealthInformationLanding = (props) => {
-	const tiles = document.querySelectorAll('.tile');
-	const tileNames = Object.keys(COMMON_AILMETS);
-
 	const [showTable, setShowTable] = useState(props.showTable);
 	const [query, setQuery] = useState("");
 	const [data, setData] = useState("");
@@ -127,6 +124,8 @@ const HealthInformationLanding = (props) => {
 	return (
 			<Content className="row" style={{ backgroundColor: "#D3D3D3" }}>
 				{!showTable && (<div>
+					<img src= '/src/images/logo.png'>
+						</img>
 					<div style={{ display: "flex", marginLeft:"15%", marginTop: "1%" }}>
 						<div id="tile1" className="tile tileColor tileCPR" onClick={flipTileContentCPR}>{AILMENT_STRING.CPR}</div>
 						
