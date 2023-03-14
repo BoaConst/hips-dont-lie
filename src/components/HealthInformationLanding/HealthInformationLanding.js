@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Content, Wrapper } from '../../HealthInformationLanding.styles';
 import './HealthInformationLanding.css';
 import { useEffect } from 'react';
+import { getUsers } from '../APIService/APIService';
 import { COMMON_AILMETS } from '../../constants/COMMON_AILMENTS';
 import { AILMENT_STRING } from '../../constants/AILMENT_STRING';
 
@@ -12,6 +13,9 @@ const HealthInformationLanding = (props) => {
 	const [showTable, setShowTable] = useState(props.showTable);
 	const [query, setQuery] = useState("");
 	const [data, setData] = useState("");
+	const [users, setUsers] = useState([]);
+
+	console.log("Users : %s", users);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -61,13 +65,19 @@ const HealthInformationLanding = (props) => {
 
 	};
 
+	useEffect(() => {
+		getUsers().then(response => {
+			setUsers(response.data);
+		});
+	}, []);
+
 	const toggleTable = () => {
 		setShowTable(!showTable);
 	};
 
 	const flipTileContentCPR = () => {
 		let tile = document.getElementById("tile1");
-		if(tile.textContent.toString() === AILMENT_STRING.CPR.toString()) {
+		if (tile.textContent.toString() === AILMENT_STRING.CPR.toString()) {
 			tile.textContent = COMMON_AILMETS.CPR
 		}
 		else {
@@ -77,7 +87,7 @@ const HealthInformationLanding = (props) => {
 
 	const flipTileContentHeatStroke = () => {
 		let tile = document.getElementById("tile2");
-		if(tile.textContent.toString() === AILMENT_STRING.HEAT_STROKE.toString()) {
+		if (tile.textContent.toString() === AILMENT_STRING.HEAT_STROKE.toString()) {
 			tile.textContent = COMMON_AILMETS['Heat Stroke']
 		}
 		else {
@@ -86,7 +96,7 @@ const HealthInformationLanding = (props) => {
 	}
 	const flipTileContentMinorBurns = () => {
 		let tile = document.getElementById("tile3");
-		if(tile.textContent.toString() === AILMENT_STRING.MINOR_BURNS.toString()) {
+		if (tile.textContent.toString() === AILMENT_STRING.MINOR_BURNS.toString()) {
 			tile.textContent = COMMON_AILMETS['Minor Burns']
 		}
 		else {
@@ -95,7 +105,7 @@ const HealthInformationLanding = (props) => {
 	}
 	const flipTileContentMinorCuts = () => {
 		let tile = document.getElementById("tile4");
-		if(tile.textContent.toString() === AILMENT_STRING.MINOR_CUTS.toString()) {
+		if (tile.textContent.toString() === AILMENT_STRING.MINOR_CUTS.toString()) {
 			tile.textContent = COMMON_AILMETS['Minor Cuts']
 		}
 		else {
@@ -104,7 +114,7 @@ const HealthInformationLanding = (props) => {
 	}
 	const flipTileContentInsulin = () => {
 		let tile = document.getElementById("tile5");
-		if(tile.textContent.toString() === AILMENT_STRING.DIABETES.toString()) {
+		if (tile.textContent.toString() === AILMENT_STRING.DIABETES.toString()) {
 			tile.textContent = COMMON_AILMETS['Diabetes (Insulin)']
 		}
 		else {
@@ -113,7 +123,7 @@ const HealthInformationLanding = (props) => {
 	}
 	const flipTileContentAsthmaAttack = () => {
 		let tile = document.getElementById("tile6");
-		if(tile.textContent.toString() === AILMENT_STRING.ASTHMA_ATTACK.toString()) {
+		if (tile.textContent.toString() === AILMENT_STRING.ASTHMA_ATTACK.toString()) {
 			tile.textContent = COMMON_AILMETS['Asthma Attack']
 		}
 		else {
@@ -122,29 +132,36 @@ const HealthInformationLanding = (props) => {
 	}
 
 	return (
-			<Content className="row" style={{ backgroundColor: "#D3D3D3" }}>
-				{!showTable && (<div>
-					<img src= '/src/images/logo.png'>
-						</img>
-					<div style={{ display: "flex", marginLeft:"15%", marginTop: "1%" }}>
-						<div id="tile1" className="tile tileColor tileCPR" onClick={flipTileContentCPR}>{AILMENT_STRING.CPR}</div>
-						
-						<div id="tile3" className="tile tileColor tileMinorBurns" onClick={flipTileContentMinorBurns}>{AILMENT_STRING.MINOR_BURNS}</div>
-						<div id="tile2" className="tile tileColor tileHeatStroke" onClick={flipTileContentHeatStroke}>{AILMENT_STRING.HEAT_STROKE}</div>
-					</div>
-					<div style={{ display: "flex", marginLeft:"15%", marginTop: "2%" }}>
-						<div id="tile4"className="tile tileColor tileMinorCuts" onClick={flipTileContentMinorCuts}>{AILMENT_STRING.MINOR_CUTS}</div>
-						<div id="tile5" className="tile tileColor tileInsulin" onClick={flipTileContentInsulin}>{AILMENT_STRING.DIABETES}</div>
-						<div id="tile6" className="tile tileColor tileAsthmaAttack" onClick={flipTileContentAsthmaAttack}>{AILMENT_STRING.ASTHMA_ATTACK}</div>
-					</div>
-				</div>)}
-				<div className="search-bar">
-					{showTable && (<div>
-						<button type="submit"
-							onClick={handleChange}>
-							<FontAwesomeIcon icon={faBackward} />
-						</button>
-						<input
+		<Content className="row" style={{ backgroundColor: "#D3D3D3" }}>
+			
+			{!showTable && (
+			
+
+			<div>
+				{users.map(user => (
+					<div key={user.id}>{user.name}</div>
+				))}
+		
+				
+				<div style={{ display: "flex", marginLeft: "15%", marginTop: "1%" }}>
+					<div id="tile1" className="tile tileColor tileCPR" onClick={flipTileContentCPR}>{AILMENT_STRING.CPR}</div>
+
+					<div id="tile3" className="tile tileColor tileMinorBurns" onClick={flipTileContentMinorBurns}>{AILMENT_STRING.MINOR_BURNS}</div>
+					<div id="tile2" className="tile tileColor tileHeatStroke" onClick={flipTileContentHeatStroke}>{AILMENT_STRING.HEAT_STROKE}</div>
+				</div>
+				<div style={{ display: "flex", marginLeft: "15%", marginTop: "2%" }}>
+					<div id="tile4" className="tile tileColor tileMinorCuts" onClick={flipTileContentMinorCuts}>{AILMENT_STRING.MINOR_CUTS}</div>
+					<div id="tile5" className="tile tileColor tileInsulin" onClick={flipTileContentInsulin}>{AILMENT_STRING.DIABETES}</div>
+					<div id="tile6" className="tile tileColor tileAsthmaAttack" onClick={flipTileContentAsthmaAttack}>{AILMENT_STRING.ASTHMA_ATTACK}</div>
+				</div>
+			</div>)}
+			<div className="search-bar">
+				{showTable && (<div>
+					<button type="submit"
+						onClick={handleChange}>
+						<FontAwesomeIcon icon={faBackward} />
+					</button>
+					<input
 						style={{
 							height: "50px",
 							width: "80%",
@@ -161,9 +178,9 @@ const HealthInformationLanding = (props) => {
 						onClick={updateResults}>
 						<FontAwesomeIcon icon={faSearch} />
 					</button>
-					</div>)}
-					{!showTable && (<div style={{textAlign:"center"}}>
-						<input
+				</div>)}
+				{!showTable && (<div style={{ textAlign: "center" }}>
+					<input
 						style={{
 							height: "50px",
 							width: "70%",
@@ -179,16 +196,16 @@ const HealthInformationLanding = (props) => {
 						onClick={handleChange}>
 						<FontAwesomeIcon icon={faSearch} />
 					</button>
-					</div>)}
-					
-				</div>
-				{showTable && (<div>
-					<span className="tile tileColor" style={{ marginLeft: "6%", marginBottom: "3%", width: "90%", height: "fit-content" }}><p style={{ whiteSpace: "pre-line" }}>{data}</p></span>
-				</div>
+				</div>)}
 
-				)}
+			</div>
+			{showTable && (<div>
+				<span className="tile tileColor" style={{ marginLeft: "6%", marginBottom: "3%", width: "90%", height: "fit-content" }}><p style={{ whiteSpace: "pre-line" }}>{data}</p></span>
+			</div>
 
-			</Content>
+			)}
+
+		</Content>
 
 	);
 }
