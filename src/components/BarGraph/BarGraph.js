@@ -1,24 +1,34 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styles from './BarGraph.scss';
+import React, { Component } from 'react';
+import Plot from 'react-plotly.js';
+import data from '../../constants/data.json';
 
-const BarGraph = props => (
-	<div>This is a component called BarGraph.</div>
-);
+class BarGraph extends Component {
+  render() {
+    // Extract x and y data from JSON
+    const xData = data.map(item => item.name);
+    const yData = data.map(item => item.value);
 
-// todo: Unless you need to use lifecycle methods or local state,
-// write your component in functional form as above and delete
-// this section. 
-// class BarGraph extends React.Component {
-//   render() {
-//     return <div>This is a component called BarGraph.</div>;
-//   }
-// }
+    // Define data for Plotly graph
+    const graphData = [{
+      x: xData,
+      y: yData,
+      type: 'bar'
+    }];
 
-const BarGraphPropTypes = {
-	// always use prop types!
-};
+    // Define layout for Plotly graph
+    const graphLayout = {
+      title: 'Bar Graph',
+      xaxis: { title: 'X Axis' },
+      yaxis: { title: 'Y Axis' }
+    };
 
-BarGraph.propTypes = BarGraphPropTypes;
+    return (
+      <Plot
+        data={graphData}
+        layout={graphLayout}
+      />
+    );
+  }
+}
 
 export default BarGraph;

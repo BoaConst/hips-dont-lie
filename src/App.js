@@ -1,12 +1,14 @@
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import HealthInformationLanding from './components/HealthInformationLanding';
+import HealthInformationLandingContainer from './HealthInformationLandingContainer';
+import BarGraphContainer from './BarGraphContainer';
 
 
 const App = () => (
   <Router>
     <Routes>
-      <Route path="/" element={<HealthInformationLanding/>} />
+      <Route path="/" element={<HealthInformationLandingContainer/>} />
+      <Route path="/dashboard" element={<BarGraphContainer/>} />
     </Routes>
   </Router>
 )

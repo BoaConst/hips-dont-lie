@@ -1,10 +1,10 @@
-import { React } from "react";
-import { Wrapper, Content } from "./UserExerciseTesting.styles";
+import { React } from "react";   
 
 import Header from "./components/Header";
 import HealthInformationLanding from "./components/HealthInformationLanding";
+import { Content, Wrapper } from "./HealthInformationLanding.styles";
 
-const HealthInformationLanding = () => {
+const HealthInformationLandingContainer = () => {
 
     return (
         <Wrapper className="container" style={{backgroundColor:"#5A5A5A"}}>
@@ -16,4 +16,4 @@ const HealthInformationLanding = () => {
     )
 }
 
-export default ExerciseTesting;
+export default HealthInformationLandingContainer;
