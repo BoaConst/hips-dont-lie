@@ -1,16 +1,16 @@
-import { React } from "react";   
+import { React } from "react";
 
 import Header from "./components/Header";
-import HealthInformationLanding from "./components/HealthInformationLanding";
+import TileWithBarGraph from "./components/TileWithBarGraph/TileWithBarGraph";
 import { Content, Wrapper } from "./HealthInformationLanding.styles";
 
 const HealthInformationLandingContainer = () => {
 
     return (
-        <Wrapper className="container" style={{backgroundColor:"#5A5A5A"}}>
+        <Wrapper className="container">
             <Content>
-                <Header text="Hips Dont Lie"></Header>
-                <HealthInformationLanding></HealthInformationLanding>
+                <Header text="Analytics Dashboard"></Header>
+                <TileWithBarGraph></TileWithBarGraph>
             </Content>
         </Wrapper>
     )

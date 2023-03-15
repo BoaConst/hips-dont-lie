@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import { getUsers } from '../APIService/APIService';
 import { COMMON_AILMETS } from '../../constants/COMMON_AILMENTS';
 import { AILMENT_STRING } from '../../constants/AILMENT_STRING';
+import Plot from 'react-plotly.js';
 
 
 const HealthInformationLanding = (props) => {
@@ -14,8 +15,6 @@ const HealthInformationLanding = (props) => {
 	const [query, setQuery] = useState("");
 	const [data, setData] = useState("");
 	const [users, setUsers] = useState([]);
-
-	console.log("Users : %s", users);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -78,7 +77,10 @@ const HealthInformationLanding = (props) => {
 	const flipTileContentCPR = () => {
 		let tile = document.getElementById("tile1");
 		if (tile.textContent.toString() === AILMENT_STRING.CPR.toString()) {
-			tile.textContent = COMMON_AILMETS.CPR
+			tile.innerHTML =  <div><Plot
+			data={jdata}
+			layout={layout}
+		  /></div>
 		}
 		else {
 			tile.textContent = AILMENT_STRING.CPR
@@ -121,10 +123,23 @@ const HealthInformationLanding = (props) => {
 			tile.textContent = AILMENT_STRING.DIABETES
 		}
 	}
+
+	const jdata = [
+		{
+		  x: ['A', 'B', 'C', 'D'],
+		  y: [10, 20, 15, 25],
+		  type: 'bar'
+		}
+	  ];
+	
+	  const layout = {
+		title: 'Bar Graph'
+	  };
+
 	const flipTileContentAsthmaAttack = () => {
 		let tile = document.getElementById("tile6");
 		if (tile.textContent.toString() === AILMENT_STRING.ASTHMA_ATTACK.toString()) {
-			tile.textContent = COMMON_AILMETS['Asthma Attack']
+			
 		}
 		else {
 			tile.textContent = AILMENT_STRING.ASTHMA_ATTACK
@@ -138,10 +153,6 @@ const HealthInformationLanding = (props) => {
 			
 
 			<div>
-				{users.map(user => (
-					<div key={user.id}>{user.name}</div>
-				))}
-		
 				
 				<div style={{ display: "flex", marginLeft: "15%", marginTop: "1%" }}>
 					<div id="tile1" className="tile tileColor tileCPR" onClick={flipTileContentCPR}>{AILMENT_STRING.CPR}</div>
